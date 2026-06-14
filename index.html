@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xvertech Pte. Ltd. — AI & Agentic Workflow Consultancy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--navy:#0D1B2A;--blue:#1A56DB;--blue-lt:#3B82F6;--sky:#EFF6FF;--grey:#F8FAFC;--border:#E2E8F0;--text:#1E293B;--muted:#64748B;--white:#fff;--radius:12px;--shadow:0 4px 24px rgba(13,27,42,.08);--font:'Inter',system-ui,-apple-system,sans-serif}
+    html{scroll-behavior:smooth}body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6}a{color:inherit;text-decoration:none}ul{list-style:none}
+    .label{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+    .h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.15;letter-spacing:-.02em}
+    .h2{font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:700;line-height:1.2;letter-spacing:-.015em}
+    .h3{font-size:1.2rem;font-weight:600}
+    .lead{font-size:1.1rem;color:var(--muted)}
+    .text-blue{color:var(--blue)}.text-muted{color:var(--muted)}.text-center{text-align:center}
+    .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    .section{padding:88px 0}.bg-grey{background:var(--grey)}
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:48px;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;border:2px solid transparent;font-family:var(--font)}
+    .btn-primary{background:var(--blue);color:var(--white)}.btn-primary:hover{background:#1447b5}
+    .btn-outline{border-color:var(--border);color:var(--text);background:var(--white)}.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+    .btn-ghost{color:var(--blue);padding:0;background:none;border:none;font-family:var(--font);cursor:pointer;font-size:.875rem;font-weight:600}.btn-ghost:hover{text-decoration:underline}
+    .btn-white{background:var(--white);color:var(--blue);border-color:var(--white)}.btn-white:hover{background:#EFF6FF}
+    .btn-outline-white{border-color:rgba(255,255,255,.5);color:var(--white);background:transparent}.btn-outline-white:hover{border-color:var(--white)}
+    .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:box-shadow .2s}.card:hover{box-shadow:var(--shadow)}
+    .badge{display:inline-block;padding:4px 12px;border-radius:100px;font-size:.78rem;font-weight:600}
+    .badge-blue{background:var(--sky);color:var(--blue)}.badge-popular{background:var(--blue);color:var(--white)}
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+    .nav-logo{font-size:1.25rem;font-weight:800;letter-spacing:-.03em;color:var(--navy);cursor:pointer}
+    .nav-logo span{color:var(--blue)}
+    .nav-links{display:flex;align-items:center;gap:28px}
+    .nav-links a{font-size:.875rem;font-weight:500;color:var(--muted);cursor:pointer;transition:color .15s}
+    .nav-links a:hover,.nav-links a.active{color:var(--blue)}
+    .nav-cta{display:flex;gap:10px}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
+    .mob-menu{display:none;flex-direction:column;background:var(--white);border-bottom:1px solid var(--border)}
+    .mob-menu.open{display:flex}
+    .mob-menu a{padding:13px 24px;font-size:.9rem;font-weight:500;border-bottom:1px solid var(--border);cursor:pointer}
+    .mob-menu a:hover{color:var(--blue);background:var(--sky)}
+    /* HERO */
+    .hero{padding:96px 0 72px}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:var(--sky);border-radius:100px;margin-bottom:26px;font-size:.82rem;font-weight:500;color:var(--blue)}
+    .hero-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    .hero-title{margin-bottom:20px}.hero-title em{font-style:normal;color:var(--blue)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:52px}
+    .trust-row{font-size:.82rem;color:var(--muted);margin-bottom:10px}
+    .trust-chips{display:flex;flex-wrap:wrap;gap:10px}
+    .trust-chips span{font-size:.75rem;font-weight:600;color:#94A3B8;letter-spacing:.05em;padding:5px 13px;border:1px solid var(--border);border-radius:6px}
+    .hero-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:26px;box-shadow:0 20px 60px rgba(13,27,42,.12)}
+    .hc-bar{display:flex;align-items:center;gap:7px;margin-bottom:18px}
+    .hc-dot{width:10px;height:10px;border-radius:50%}
+    .hm{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+    .hm:last-of-type{border-bottom:none}
+    .hm-lbl{font-size:.85rem;color:var(--muted)}.hm-val{font-weight:700}.hm-up{color:#16A34A;font-size:.78rem;font-weight:600}
+    /* STATS */
+    .stats-bar{padding:44px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;text-align:center}
+    .sv{font-size:2.1rem;font-weight:800;color:var(--navy);letter-spacing:-.03em}
+    .sl{font-size:.85rem;color:var(--muted);margin-top:3px}
+    /* SERVICES */
+    .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:44px}
+    .svc-card{border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:all .2s;background:var(--white)}
+    .svc-card:hover{border-color:var(--blue);box-shadow:0 0 0 4px rgba(26,86,219,.06)}
+    .svc-num{font-size:.75rem;font-weight:700;color:var(--blue);letter-spacing:.1em;margin-bottom:14px}
+    /* PROCESS */
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:28px;margin-top:44px;text-align:center}
+    .step-n{width:46px;height:46px;border-radius:50%;background:var(--blue);color:var(--white);font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+    /* TESTIMONIALS */
+    .tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:44px}
+    .tcard{border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+    .tstars{color:#F59E0B;margin-bottom:12px}.tbody{font-size:.9rem;line-height:1.7;margin-bottom:18px}
+    .tauth{display:flex;align-items:center;gap:10px}
+    .tavt{width:38px;height:38px;border-radius:50%;background:var(--sky);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:var(--blue);flex-shrink:0}
+    /* PRICING */
+    .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:44px}
+    .pcard{border:1px solid var(--border);border-radius:var(--radius);padding:36px 32px}
+    .pcard.feat{border-color:var(--blue);box-shadow:0 0 0 4px rgba(26,86,219,.08)}
+    .pamt{font-size:2.4rem;font-weight:800;color:var(--navy);margin:14px 0 3px}
+    .pper{font-size:.85rem;color:var(--muted)}
+    .pfeat{margin:24px 0;display:flex;flex-direction:column;gap:10px}
+    .pf{display:flex;align-items:flex-start;gap:9px;font-size:.85rem}
+    .pf::before{content:"✓";color:var(--blue);font-weight:700;flex-shrink:0}
+    .pf.no::before{content:"✕";color:#CBD5E1}.pf.no{color:var(--muted)}
+    /* BLOG */
+    .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:44px}
+    .bcard{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s}
+    .bcard:hover{box-shadow:var(--shadow)}
+    .bthumb{height:150px;display:flex;align-items:center;justify-content:center;font-size:2.2rem}
+    .bbody{padding:22px}.bdate{font-size:.78rem;color:var(--muted);margin-bottom:7px}
+    .btitle{font-weight:600;margin-bottom:7px;line-height:1.4;font-size:.95rem}
+    .bexc{font-size:.85rem;color:var(--muted)}
+    /* CONTACT */
+    .cgrid{display:grid;grid-template-columns:1fr 1.6fr;gap:56px;align-items:start}
+    .cinfo{display:flex;flex-direction:column;gap:22px}
+    .citem{display:flex;gap:13px;align-items:flex-start}
+    .cicon{width:40px;height:40px;border-radius:9px;background:var(--sky);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem}
+    .clbl{font-size:.73rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+    .fgroup{display:flex;flex-direction:column;gap:5px;margin-bottom:16px}
+    .fgroup label{font-size:.85rem;font-weight:600}
+    .fgroup input,.fgroup textarea,.fgroup select{border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:.875rem;font-family:var(--font);color:var(--text);outline:none;transition:border-color .15s}
+    .fgroup input:focus,.fgroup textarea:focus,.fgroup select:focus{border-color:var(--blue)}
+    .fgroup textarea{resize:vertical;min-height:100px}
+    .frow{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+    /* ABOUT */
+    .tgrd{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:24px;margin-top:44px;text-align:center}
+    .tavatar{width:68px;height:68px;border-radius:50%;background:var(--sky);display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;color:var(--blue);margin:0 auto 12px}
+    .vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;margin-top:44px}
+    .vcard{padding:24px;border-radius:var(--radius);background:var(--sky)}
+    /* SOLUTIONS */
+    .srow{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-bottom:72px}
+    .srow:last-child{margin-bottom:0}
+    .svis{background:var(--sky);border-radius:14px;padding:36px 28px}
+    .sfeat{display:flex;gap:11px;align-items:flex-start;margin-bottom:14px}
+    .sficon{width:28px;height:28px;border-radius:6px;background:var(--blue);color:var(--white);font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+    .term{background:#0D1B2A;border-radius:10px;padding:20px;font-family:'Courier New',monospace}
+    .tbar{display:flex;gap:6px;margin-bottom:12px}.tdot{width:9px;height:9px;border-radius:50%}
+    .tl{font-size:.76rem;color:#64748B;line-height:2}.tl .g{color:#4ADE80}.tl .y{color:#FCD34D}.tl .b{color:#93C5FD}.tl .w{color:#F8FAFC}
+    /* LEGAL */
+    .legal{max-width:780px;margin:0 auto}
+    .legal h2{font-size:1.3rem;font-weight:700;margin:32px 0 9px}
+    .legal p{color:var(--muted);margin-bottom:12px;font-size:.9rem}
+    .legal ul{padding-left:18px;margin-bottom:12px}
+    .legal ul li{color:var(--muted);font-size:.9rem;margin-bottom:5px;list-style:disc}
+    /* CTA */
+    .cta{background:var(--blue);color:var(--white);padding:72px 0;text-align:center}
+    .cta .h2{color:var(--white);margin-bottom:10px}
+    .cta p{color:rgba(255,255,255,.8);max-width:52ch;margin:0 auto 32px}
+    /* FOOTER */
+    .footer{background:var(--navy);color:rgba(255,255,255,.65);padding:60px 0 30px}
+    .fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.1)}
+    .flogo{font-size:1.25rem;font-weight:800;color:var(--white);margin-bottom:10px}
+    .flogo span{color:var(--blue-lt)}
+    .fdesc{font-size:.85rem;line-height:1.7;margin-bottom:18px;max-width:270px}
+    .fct{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-bottom:14px}
+    .flinks{display:flex;flex-direction:column;gap:9px}
+    .flinks a{font-size:.85rem;cursor:pointer;transition:color .15s}.flinks a:hover{color:var(--white)}
+    .fbot{display:flex;justify-content:space-between;align-items:flex-start;padding-top:24px;gap:14px;flex-wrap:wrap}
+    .flegal-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:5px}
+    .flegal-links a{font-size:.78rem;cursor:pointer}.flegal-links a:hover{color:var(--white)}
+    /* PAGES */
+    .page{display:none}.page.active{display:block;animation:fi .2s ease}
+    @keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+    /* TOAST */
+    .toast{position:fixed;bottom:26px;right:26px;background:var(--navy);color:var(--white);padding:13px 18px;border-radius:9px;font-size:.875rem;box-shadow:0 8px 30px rgba(0,0,0,.2);transform:translateY(80px);opacity:0;transition:all .3s;z-index:999}
+    .toast.show{transform:translateY(0);opacity:1}
+    /* RESPONSIVE */
+    @media(max-width:960px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.grid-2{grid-template-columns:1fr}.cgrid{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr 1fr}.frow{grid-template-columns:1fr}.srow{grid-template-columns:1fr}}
+    @media(max-width:600px){.section{padding:60px 0}.hero{padding:60px 0 44px}.fgrid{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <span class="nav-logo" onclick="go('home')">XVER<span>TECH</span></span>
+      <div class="nav-links">
+        <a onclick="go('home')" data-page="home">Home</a>
+        <a onclick="go('about')" data-page="about">About</a>
+        <a onclick="go('services')" data-page="services">Services</a>
+        <a onclick="go('solutions')" data-page="solutions">Solutions</a>
+        <a onclick="go('pricing')" data-page="pricing">Pricing</a>
+        <a onclick="go('blog')" data-page="blog">Insights</a>
+        <a onclick="go('contact')" data-page="contact">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <button class="btn btn-outline" style="padding:8px 18px;font-size:.82rem" onclick="go('contact')">Log In</button>
+        <button class="btn btn-primary" style="padding:8px 18px;font-size:.82rem" onclick="go('contact')">Get Started</button>
+      </div>
+      <div class="hamburger" onclick="toggleMob()"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mob-menu" id="mob">
+    <a onclick="go('home');closeMob()">Home</a><a onclick="go('about');closeMob()">About</a>
+    <a onclick="go('services');closeMob()">Services</a><a onclick="go('solutions');closeMob()">Solutions</a>
+    <a onclick="go('pricing');closeMob()">Pricing</a><a onclick="go('blog');closeMob()">Insights</a>
+    <a onclick="go('contact');closeMob()">Contact</a>
+  </div>
+</header>
+<main>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <div class="hero-badge"><span class="hero-dot"></span>AI-First Consultancy · Singapore</div>
+          <h1 class="h1 hero-title">Grow Smarter with <em>AI &amp; Agentic</em> Workflows</h1>
+          <p class="lead" style="margin-bottom:32px">Xvertech helps SMEs and ecommerce businesses harness AI automation — turning complex workflows into revenue-generating engines.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="go('contact')">Book a Free Consultation →</button>
+            <button class="btn btn-outline" onclick="go('solutions')">See How It Works</button>
+          </div>
+          <p class="trust-row">Trusted by forward-thinking businesses across Southeast Asia</p>
+          <div class="trust-chips"><span>ECOMMERCE</span><span>RETAIL</span><span>FINTECH</span><span>LOGISTICS</span><span>B2B SaaS</span></div>
+        </div>
+        <div>
+          <div class="hero-card">
+            <div class="hc-bar"><div class="hc-dot" style="background:#EF4444"></div><div class="hc-dot" style="background:#F59E0B"></div><div class="hc-dot" style="background:#22C55E"></div><span style="font-size:.75rem;color:var(--muted);margin-left:6px">Agentic Dashboard — Live</span></div>
+            <div class="hm"><span class="hm-lbl">Revenue automated (this month)</span><div style="display:flex;align-items:center;gap:7px"><span class="hm-val">S$284,500</span><span class="hm-up">↑ 34%</span></div></div>
+            <div class="hm"><span class="hm-lbl">Workflows running</span><div style="display:flex;align-items:center;gap:7px"><span class="hm-val">147</span><span class="hm-up">↑ 12</span></div></div>
+            <div class="hm"><span class="hm-lbl">Hours saved per week</span><div style="display:flex;align-items:center;gap:7px"><span class="hm-val">320 hrs</span><span class="hm-up">↑ 18%</span></div></div>
+            <div class="hm" style="border-bottom:none"><span class="hm-lbl">Customer reach expanded</span><div style="display:flex;align-items:center;gap:7px"><span class="hm-val">+2.4M</span><span class="hm-up">↑ 61%</span></div></div>
+            <div style="margin-top:16px;padding:12px;background:var(--sky);border-radius:8px;display:flex;align-items:center;gap:9px">
+              <span style="font-size:1.2rem">🤖</span>
+              <div><div style="font-size:.78rem;font-weight:600;color:var(--blue)">AI Agent Active</div><div style="font-size:.76rem;color:var(--muted)">Processing 23 tasks in real-time...</div></div>
+              <div style="margin-left:auto;width:8px;height:8px;border-radius:50%;background:#22C55E;animation:pulse 1.5s infinite"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar"><div class="container"><div class="stats-grid">
+    <div><div class="sv">50+</div><div class="sl">Clients Served</div></div>
+    <div><div class="sv">320%</div><div class="sl">Avg. ROI</div></div>
+    <div><div class="sv">10M+</div><div class="sl">Transactions Automated</div></div>
+    <div><div class="sv">98%</div><div class="sl">Client Retention</div></div>
+    <div><div class="sv">8 yrs</div><div class="sl">In Business</div></div>
+  </div></div></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="text-center" style="max-width:580px;margin:0 auto 44px"><div class="label">What We Do</div><h2 class="h2" style="margin:10px 0">End-to-End AI Services for Growth</h2><p class="lead" style="max-width:none">From strategy to execution, we build AI systems that generate measurable results.</p></div>
+      <div class="svc-grid">
+        <div class="svc-card"><div class="svc-num">01</div><div style="font-size:1.9rem;margin-bottom:10px">🧠</div><h3 class="h3" style="margin-bottom:7px">AI Strategy Consulting</h3><p style="font-size:.875rem;color:var(--muted)">Identify high-impact AI opportunities and build a roadmap that drives measurable revenue growth.</p><button class="btn-ghost" onclick="go('services')" style="margin-top:12px">Learn more →</button></div>
+        <div class="svc-card"><div class="svc-num">02</div><div style="font-size:1.9rem;margin-bottom:10px">⚙️</div><h3 class="h3" style="margin-bottom:7px">Agentic Workflow Automation</h3><p style="font-size:.875rem;color:var(--muted)">Deploy AI agents that autonomously execute multi-step processes across support, fulfilment, and marketing.</p><button class="btn-ghost" onclick="go('services')" style="margin-top:12px">Learn more →</button></div>
+        <div class="svc-card"><div class="svc-num">03</div><div style="font-size:1.9rem;margin-bottom:10px">🔗</div><h3 class="h3" style="margin-bottom:7px">SaaS Integration &amp; Development</h3><p style="font-size:.875rem;color:var(--muted)">Custom SaaS tools and platform integrations that unlock intelligent automation at scale.</p><button class="btn-ghost" onclick="go('services')" style="margin-top:12px">Learn more →</button></div>
+        <div class="svc-card"><div class="svc-num">04</div><div style="font-size:1.9rem;margin-bottom:10px">🛒</div><h3 class="h3" style="margin-bottom:7px">Ecommerce AI Solutions</h3><p style="font-size:.875rem;color:var(--muted)">Personalisation, dynamic pricing, inventory AI, and conversational commerce for high-volume ecommerce.</p><button class="btn-ghost" onclick="go('services')" style="margin-top:12px">Learn more →</button></div>
+        <div class="svc-card"><div class="svc-num">05</div><div style="font-size:1.9rem;margin-bottom:10px">🏢</div><h3 class="h3" style="margin-bottom:7px">SME Digital Transformation</h3><p style="font-size:.875rem;color:var(--muted)">Budget-conscious AI transformation programmes tailored to the needs of growing SMEs.</p><button class="btn-ghost" onclick="go('services')" style="margin-top:12px">Learn more →</button></div>
+        <div class="svc-card" style="background:var(--navy);border-color:var(--navy)"><div style="font-size:1.9rem;margin-bottom:10px">🚀</div><h3 class="h3" style="margin-bottom:7px;color:var(--white)">Ready to Start?</h3><p style="font-size:.875rem;color:rgba(255,255,255,.65);margin-bottom:18px">Book a free 30-minute discovery call with our AI experts today.</p><button class="btn btn-white" style="padding:9px 18px;font-size:.82rem" onclick="go('contact')">Book Now →</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-grey">
+    <div class="container">
+      <div class="text-center" style="max-width:580px;margin:0 auto 44px"><div class="label">How It Works</div><h2 class="h2" style="margin:10px 0">From Idea to Impact in 4 Steps</h2></div>
+      <div class="steps">
+        <div><div class="step-n">1</div><h3 class="h3" style="margin-bottom:7px">Discovery</h3><p style="font-size:.875rem;color:var(--muted)">We audit your operations and map AI opportunities with the highest ROI potential.</p></div>
+        <div><div class="step-n">2</div><h3 class="h3" style="margin-bottom:7px">Design</h3><p style="font-size:.875rem;color:var(--muted)">Our architects design bespoke AI workflows aligned with your business goals.</p></div>
+        <div><div class="step-n">3</div><h3 class="h3" style="margin-bottom:7px">Deploy</h3><p style="font-size:.875rem;color:var(--muted)">We build, test, and launch your AI systems with minimal disruption.</p></div>
+        <div><div class="step-n">4</div><h3 class="h3" style="margin-bottom:7px">Optimise</h3><p style="font-size:.875rem;color:var(--muted)">Continuous monitoring to ensure compounding returns over time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="text-center" style="max-width:580px;margin:0 auto 44px"><div class="label">Client Stories</div><h2 class="h2" style="margin:10px 0">What Our Clients Say</h2></div>
+      <div class="tgrid">
+        <div class="tcard"><div class="tstars">★★★★★</div><p class="tbody">"Xvertech automated 80% of our customer service queries within 6 weeks. Our team now focuses on high-value tasks while AI handles the rest."</p><div class="tauth"><div class="tavt">WL</div><div><div style="font-weight:600;font-size:.875rem">Wei Lin Tan</div><div style="font-size:.78rem;color:var(--muted)">CEO, StyleHive Singapore</div></div></div></div>
+        <div class="tcard"><div class="tstars">★★★★★</div><p class="tbody">"The agentic workflow they built for our order management reduced fulfilment errors by 94% and cut processing time from 2 hours to 8 minutes."</p><div class="tauth"><div class="tavt">RK</div><div><div style="font-weight:600;font-size:.875rem">Rahul Kumar</div><div style="font-size:.78rem;color:var(--muted)">COO, SwiftSupply Pte. Ltd.</div></div></div></div>
+        <div class="tcard"><div class="tstars">★★★★★</div><p class="tbody">"Their AI strategy roadmap gave our 5-person team a clear plan to scale without hiring. We're now generating 3× revenue with the same headcount."</p><div class="tauth"><div class="tavt">SL</div><div><div style="font-weight:600;font-size:.875rem">Sarah Lim</div><div style="font-size:.78rem;color:var(--muted)">Founder, NourishMart</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2 class="h2">Ready to Scale with AI?</h2>
+      <p>Join 50+ SMEs and ecommerce leaders who have transformed their operations with Xvertech.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-white" onclick="go('contact')">Book a Free Consultation</button>
+        <button class="btn btn-outline-white" onclick="go('pricing')">View Pricing</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ABOUT -->
+<div class="page" id="page-about">
+  <div style="padding:76px 0 38px;background:var(--grey)"><div class="container"><div class="label">About Xvertech</div><h1 class="h1" style="margin:10px 0 14px;max-width:680px">We Exist to Make AI <span class="text-blue">Work for Your Business</span></h1><p class="lead">Founded in Singapore in 2017, Xvertech is on a mission to democratise AI for SMEs and ecommerce businesses across Southeast Asia.</p></div></div>
+  <section class="section"><div class="container"><div class="grid-2">
+    <div><div class="label">Our Story</div><h2 class="h2" style="margin:10px 0 18px">Built by Operators, for Operators</h2><p style="color:var(--muted);margin-bottom:14px">Xvertech was founded by technologists and business operators who experienced first-hand the inefficiencies that plague growing businesses — manual processes, disconnected systems, and missed revenue.</p><p style="color:var(--muted);margin-bottom:14px">We believed AI should be practical and accessible — not just for large enterprises. So we built Xvertech to bridge the gap between cutting-edge AI and real-world business outcomes.</p><p style="color:var(--muted)">Today we serve clients across Singapore and Southeast Asia, delivering AI and agentic workflow solutions that generate measurable competitive advantage.</p></div>
+    <div style="background:var(--sky);border-radius:14px;padding:36px;display:flex;flex-direction:column;gap:18px">
+      <div><div style="font-size:2rem;font-weight:800;color:var(--navy)">2017</div><div style="color:var(--muted);font-size:.85rem">Founded in Singapore</div></div>
+      <div style="height:1px;background:var(--border)"></div>
+      <div><div style="font-size:1.3rem;font-weight:800;color:var(--navy)">UEN 201713613H</div><div style="color:var(--muted);font-size:.85rem">Registered entity, Singapore</div></div>
+      <div style="height:1px;background:var(--border)"></div>
+      <div style="font-size:.85rem;color:var(--muted);line-height:1.9"><strong style="color:var(--text)">Registered Office</strong><br>101 Upper Cross Street<br>#05-16, People's Park Centre<br>Singapore 058357</div>
+    </div>
+  </div></div></section>
+  <section class="section bg-grey"><div class="container"><div class="text-center" style="max-width:560px;margin:0 auto 44px"><div class="label">Our Values</div><h2 class="h2" style="margin:10px 0">The Principles We Work By</h2></div><div class="vgrid"><div class="vcard"><div style="font-size:1.7rem;margin-bottom:9px">🎯</div><h3 class="h3" style="margin-bottom:7px">Outcomes First</h3><p style="font-size:.875rem;color:var(--muted)">We measure success by business results, not technology deployed.</p></div><div class="vcard"><div style="font-size:1.7rem;margin-bottom:9px">🤝</div><h3 class="h3" style="margin-bottom:7px">Trusted Partnership</h3><p style="font-size:.875rem;color:var(--muted)">Full transparency and accountability at every stage.</p></div><div class="vcard"><div style="font-size:1.7rem;margin-bottom:9px">⚡</div><h3 class="h3" style="margin-bottom:7px">Pragmatic Innovation</h3><p style="font-size:.875rem;color:var(--muted)">Right tools for the job — reliable results on time and budget.</p></div><div class="vcard"><div style="font-size:1.7rem;margin-bottom:9px">🔒</div><h3 class="h3" style="margin-bottom:7px">Data Integrity</h3><p style="font-size:.875rem;color:var(--muted)">PDPA-compliant and best-in-class data governance.</p></div></div></div></section>
+  <section class="section"><div class="container"><div class="text-center" style="max-width:560px;margin:0 auto 44px"><div class="label">Our Team</div><h2 class="h2" style="margin:10px 0">The Experts Behind Your AI Transformation</h2></div><div class="tgrd"><div><div class="tavatar">CX</div><h3 class="h3" style="margin-bottom:3px">Chief Executive</h3><p style="font-size:.85rem;color:var(--muted)">Strategy &amp; Partnerships</p></div><div><div class="tavatar">AI</div><h3 class="h3" style="margin-bottom:3px">Head of AI Engineering</h3><p style="font-size:.85rem;color:var(--muted)">Agentic Systems &amp; LLMs</p></div><div><div class="tavatar">BD</div><h3 class="h3" style="margin-bottom:3px">Solutions Architect</h3><p style="font-size:.85rem;color:var(--muted)">SaaS &amp; Integrations</p></div><div><div class="tavatar">EC</div><h3 class="h3" style="margin-bottom:3px">Ecommerce Lead</h3><p style="font-size:.85rem;color:var(--muted)">Commerce AI &amp; Growth</p></div></div></div></section>
+  <section class="cta"><div class="container"><h2 class="h2">Let's Build Something Together</h2><p>Whether you're exploring AI or ready to deploy — we're here to help.</p><button class="btn btn-white" onclick="go('contact')">Talk to Our Team →</button></div></section>
+</div>
+
+<!-- SERVICES -->
+<div class="page" id="page-services">
+  <div style="padding:76px 0 38px;background:var(--grey)"><div class="container"><div class="label">Our Services</div><h1 class="h1" style="margin:10px 0 14px;max-width:680px">AI Services Built for <span class="text-blue">Real Business Results</span></h1><p class="lead">Every service is designed to deliver measurable outcomes — not technology for its own sake.</p></div></div>
+  <section class="section"><div class="container" style="display:flex;flex-direction:column;gap:24px">
+    <div class="card" style="display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start"><div><div style="font-size:2rem;margin-bottom:8px">🧠</div><div class="label" style="margin-bottom:5px">Service 01</div><h2 class="h2" style="font-size:1.5rem;margin-bottom:8px">AI Strategy Consulting</h2><span class="badge badge-blue">Consulting</span></div><div><p style="color:var(--muted);margin-bottom:16px">Our AI Strategy Consulting delivers a clear, prioritised roadmap tailored to your industry, team size, and budget. We identify the highest-ROI opportunities and give you a practical execution plan.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px"><div class="pf" style="font-size:.875rem">AI opportunity audit</div><div class="pf" style="font-size:.875rem">Competitive benchmarking</div><div class="pf" style="font-size:.875rem">ROI modelling</div><div class="pf" style="font-size:.875rem">Technology selection</div><div class="pf" style="font-size:.875rem">90-day implementation roadmap</div><div class="pf" style="font-size:.875rem">Team readiness assessment</div></div></div></div>
+    <div class="card" style="display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start"><div><div style="font-size:2rem;margin-bottom:8px">⚙️</div><div class="label" style="margin-bottom:5px">Service 02</div><h2 class="h2" style="font-size:1.5rem;margin-bottom:8px">Agentic Workflow Automation</h2><span class="badge badge-blue">Automation</span></div><div><p style="color:var(--muted);margin-bottom:16px">AI agents that plan, decide, and act autonomously on multi-step business tasks — without constant human oversight. We design, build, and maintain agentic pipelines that run 24/7.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px"><div class="pf" style="font-size:.875rem">Multi-agent orchestration</div><div class="pf" style="font-size:.875rem">Customer support automation</div><div class="pf" style="font-size:.875rem">Sales &amp; lead gen agents</div><div class="pf" style="font-size:.875rem">Document processing</div><div class="pf" style="font-size:.875rem">Fulfilment &amp; logistics AI</div><div class="pf" style="font-size:.875rem">Real-time monitoring</div></div></div></div>
+    <div class="card" style="display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start"><div><div style="font-size:2rem;margin-bottom:8px">🔗</div><div class="label" style="margin-bottom:5px">Service 03</div><h2 class="h2" style="font-size:1.5rem;margin-bottom:8px">SaaS Integration &amp; Development</h2><span class="badge badge-blue">Development</span></div><div><p style="color:var(--muted);margin-bottom:16px">Custom integrations, APIs, and lightweight SaaS products that connect your platforms and enable AI-powered decision-making across the business.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px"><div class="pf" style="font-size:.875rem">API design &amp; development</div><div class="pf" style="font-size:.875rem">Platform integrations (Shopify, HubSpot, Xero…)</div><div class="pf" style="font-size:.875rem">Custom internal tools</div><div class="pf" style="font-size:.875rem">Data pipeline engineering</div><div class="pf" style="font-size:.875rem">Event-driven systems</div><div class="pf" style="font-size:.875rem">SaaS product development</div></div></div></div>
+    <div class="card" style="display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start"><div><div style="font-size:2rem;margin-bottom:8px">🛒</div><div class="label" style="margin-bottom:5px">Service 04</div><h2 class="h2" style="font-size:1.5rem;margin-bottom:8px">Ecommerce AI Solutions</h2><span class="badge badge-blue">Ecommerce</span></div><div><p style="color:var(--muted);margin-bottom:16px">Specialised AI for high-volume online retail. Increase conversion, reduce churn, and scale operations without proportional headcount growth.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px"><div class="pf" style="font-size:.875rem">Product recommendation engines</div><div class="pf" style="font-size:.875rem">Dynamic pricing AI</div><div class="pf" style="font-size:.875rem">Inventory demand forecasting</div><div class="pf" style="font-size:.875rem">Conversational commerce</div><div class="pf" style="font-size:.875rem">Customer segmentation &amp; LTV</div><div class="pf" style="font-size:.875rem">Abandoned cart recovery</div></div></div></div>
+    <div class="card" style="display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start"><div><div style="font-size:2rem;margin-bottom:8px">🏢</div><div class="label" style="margin-bottom:5px">Service 05</div><h2 class="h2" style="font-size:1.5rem;margin-bottom:8px">SME Digital Transformation</h2><span class="badge badge-blue">Transformation</span></div><div><p style="color:var(--muted);margin-bottom:16px">A structured, budget-conscious programme that takes SMEs from manual operations to modern AI-assisted workflows — without disrupting the business or overwhelming the team.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px"><div class="pf" style="font-size:.875rem">Digital maturity assessment</div><div class="pf" style="font-size:.875rem">Phase-based roadmap</div><div class="pf" style="font-size:.875rem">Staff training &amp; change mgmt</div><div class="pf" style="font-size:.875rem">Quick-win automation projects</div><div class="pf" style="font-size:.875rem">Cloud migration guidance</div><div class="pf" style="font-size:.875rem">Ongoing advisory &amp; support</div></div></div></div>
+  </div></section>
+  <section class="cta"><div class="container"><h2 class="h2">Not Sure Which Service Fits?</h2><p>Talk to our team and we'll identify the highest-impact starting point for your business.</p><button class="btn btn-white" onclick="go('contact')">Book a Free Discovery Call →</button></div></section>
+</div>
+
+<!-- SOLUTIONS -->
+<div class="page" id="page-solutions">
+  <div style="padding:76px 0 38px;background:var(--grey)"><div class="container"><div class="label">Solutions</div><h1 class="h1" style="margin:10px 0 14px;max-width:680px">Purpose-Built AI for <span class="text-blue">Your Industry</span></h1><p class="lead">Solution accelerators that reduce time-to-value for the most common AI use cases.</p></div></div>
+  <section class="section"><div class="container">
+    <div class="srow">
+      <div><div class="label">For Ecommerce</div><h2 class="h2" style="margin:10px 0 14px">AI Commerce Suite</h2><p style="color:var(--muted);margin-bottom:22px">A fully integrated AI layer for your online store that personalises every customer touchpoint, automates operations, and maximises conversion and repeat purchase rates.</p>
+        <div class="sfeat"><div class="sficon">✦</div><div><strong>Smart Recommendations</strong><br><span style="font-size:.85rem;color:var(--muted)">Real-time product recommendations based on behaviour, purchase history, and inventory.</span></div></div>
+        <div class="sfeat"><div class="sficon">✦</div><div><strong>Agentic Customer Support</strong><br><span style="font-size:.85rem;color:var(--muted)">AI agents that resolve 80%+ of support tickets without human intervention.</span></div></div>
+        <div class="sfeat"><div class="sficon">✦</div><div><strong>Demand &amp; Inventory AI</strong><br><span style="font-size:.85rem;color:var(--muted)">Forecast demand and automate reordering to eliminate stockouts and overstock.</span></div></div>
+        <button class="btn btn-primary" style="margin-top:22px" onclick="go('contact')">Get a Demo →</button>
+      </div>
+      <div class="svis">
+        <div class="term">
+          <div class="tbar"><div class="tdot" style="background:#EF4444"></div><div class="tdot" style="background:#F59E0B"></div><div class="tdot" style="background:#22C55E"></div></div>
+          <div class="tl"><span class="g">✓</span> <span class="w">AI Commerce Agent</span> <span class="y">running</span></div>
+          <div class="tl"><span class="b">→</span> Processing 142 active sessions...</div>
+          <div class="tl"><span class="g">✓</span> Recommendations served: <span class="w">1,847</span></div>
+          <div class="tl"><span class="g">✓</span> Cart recoveries triggered: <span class="w">23</span></div>
+          <div class="tl"><span class="g">✓</span> Support tickets resolved: <span class="w">18/20</span></div>
+          <div class="tl"><span class="b">→</span> Reorder alert: SKU-4492 <span class="y">low stock</span></div>
+          <div class="tl"><span class="g">✓</span> PO auto-generated &amp; sent</div>
+          <div class="tl" style="margin-top:7px"><span class="g">Revenue impact today:</span> <span class="w">+S$12,400</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="height:1px;background:var(--border);margin-bottom:72px"></div>
+    <div class="srow">
+      <div class="svis" style="order:0">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="background:var(--white);border-radius:9px;padding:16px;display:flex;align-items:center;gap:11px;box-shadow:0 2px 12px rgba(13,27,42,.07)"><div style="font-size:1.3rem">📬</div><div><div style="font-weight:600;font-size:.85rem">Lead qualified by AI</div><div style="font-size:.76rem;color:var(--muted)">High intent · Score 94/100</div></div><span style="margin-left:auto;color:#16A34A;font-weight:700;font-size:.78rem">+1 Lead</span></div>
+          <div style="background:var(--white);border-radius:9px;padding:16px;display:flex;align-items:center;gap:11px;box-shadow:0 2px 12px rgba(13,27,42,.07)"><div style="font-size:1.3rem">📄</div><div><div style="font-weight:600;font-size:.85rem">Invoice processed</div><div style="font-size:.76rem;color:var(--muted)">INV-2847 · S$4,200 · Synced to Xero</div></div><span style="margin-left:auto;color:#16A34A;font-weight:700;font-size:.78rem">Done</span></div>
+          <div style="background:var(--white);border-radius:9px;padding:16px;display:flex;align-items:center;gap:11px;box-shadow:0 2px 12px rgba(13,27,42,.07)"><div style="font-size:1.3rem">📣</div><div><div style="font-weight:600;font-size:.85rem">Social post published</div><div style="font-size:.76rem;color:var(--muted)">Instagram + LinkedIn · 847 impressions</div></div><span style="margin-left:auto;color:var(--blue);font-weight:700;font-size:.78rem">↑ 22%</span></div>
+          <div style="background:var(--white);border-radius:9px;padding:16px;display:flex;align-items:center;gap:11px;box-shadow:0 2px 12px rgba(13,27,42,.07)"><div style="font-size:1.3rem">💰</div><div><div style="font-weight:600;font-size:.85rem">Cashflow alert</div><div style="font-size:.76rem;color:var(--muted)">3 invoices due in 7 days · S$18,400 incoming</div></div><span style="margin-left:auto;color:#F59E0B;font-weight:700;font-size:.78rem">FYI</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="label">For SMEs</div><h2 class="h2" style="margin:10px 0 14px">SME Growth Accelerator</h2>
+        <p style="color:var(--muted);margin-bottom:22px">An integrated bundle of AI-powered tools designed to help growing SMEs punch above their weight — automating the repetitive so your team can focus on growth.</p>
+        <div class="sfeat"><div class="sficon">✦</div><div><strong>Lead &amp; CRM Automation</strong><br><span style="font-size:.85rem;color:var(--muted)">AI agents that qualify, follow up, and nurture leads 24/7.</span></div></div>
+        <div class="sfeat"><div class="sficon">✦</div><div><strong>Finance &amp; Ops AI</strong><br><span style="font-size:.85rem;color:var(--muted)">Automated invoice processing, expense categorisation, and cashflow alerts.</span></div></div>
+        <div class="sfeat"><div class="sficon">✦</div><div><strong>Marketing Content Engine</strong><br><span style="font-size:.85rem;color:var(--muted)">AI-generated, on-brand content for email, social, and ads at a fraction of the cost.</span></div></div>
+        <button class="btn btn-primary" style="margin-top:22px" onclick="go('contact')">Get a Demo →</button>
+      </div>
+    </div>
+  </div></section>
+  <section class="cta"><div class="container"><h2 class="h2">See These Solutions in Action</h2><p>Request a live demo tailored to your industry and use case.</p><button class="btn btn-white" onclick="go('contact')">Request a Demo →</button></div></section>
+</div>
+
+<!-- PRICING -->
+<div class="page" id="page-pricing">
+  <div style="padding:76px 0 38px;background:var(--grey)"><div class="container text-center"><div class="label">Pricing</div><h1 class="h1" style="margin:10px auto 14px;max-width:660px">Simple, Transparent <span class="text-blue">Pricing</span></h1><p class="lead" style="margin:0 auto">All plans include onboarding support and a dedicated success manager.</p></div></div>
+  <section class="section"><div class="container">
+    <div class="pgrid">
+      <div class="pcard"><div class="badge badge-blue">Starter</div><div class="pamt">S$1,800</div><div class="pper">per month</div><p style="font-size:.85rem;color:var(--muted);margin-top:9px">For SMEs taking their first steps with AI automation.</p><div class="pfeat"><div class="pf">AI Strategy Workshop (1 session)</div><div class="pf">1 Agentic Workflow deployed</div><div class="pf">Up to 3 system integrations</div><div class="pf">Email support (24hr response)</div><div class="pf">Monthly performance report</div><div class="pf no">Custom AI model training</div><div class="pf no">Dedicated success manager</div></div><button class="btn btn-outline" style="width:100%;justify-content:center" onclick="go('contact')">Get Started</button></div>
+      <div class="pcard feat"><div class="badge badge-popular">Most Popular</div><div class="pamt">S$4,500</div><div class="pper">per month</div><p style="font-size:.85rem;color:var(--muted);margin-top:9px">For growing businesses scaling AI across their operations.</p><div class="pfeat"><div class="pf">Full AI Strategy Consulting</div><div class="pf">Up to 5 Agentic Workflows</div><div class="pf">Unlimited integrations</div><div class="pf">Priority support (4hr response)</div><div class="pf">Weekly performance dashboards</div><div class="pf">Custom AI model fine-tuning</div><div class="pf">Dedicated success manager</div></div><button class="btn btn-primary" style="width:100%;justify-content:center" onclick="go('contact')">Get Started</button></div>
+      <div class="pcard"><div class="badge badge-blue">Enterprise</div><div class="pamt">Custom</div><div class="pper">tailored to your needs</div><p style="font-size:.85rem;color:var(--muted);margin-top:9px">For larger businesses needing enterprise-grade AI at scale.</p><div class="pfeat"><div class="pf">Bespoke AI architecture design</div><div class="pf">Unlimited workflows &amp; agents</div><div class="pf">On-premise or private cloud</div><div class="pf">SLA-backed 24/7 support</div><div class="pf">Real-time analytics platform</div><div class="pf">Custom AI model development</div><div class="pf">Executive AI training programme</div></div><button class="btn btn-outline" style="width:100%;justify-content:center" onclick="go('contact')">Contact Sales</button></div>
+    </div>
+    <div style="margin-top:44px;background:var(--sky);border-radius:14px;padding:36px;text-align:center"><h3 class="h3" style="margin-bottom:9px">Not sure which plan is right?</h3><p style="color:var(--muted);margin-bottom:22px;max-width:48ch;margin-left:auto;margin-right:auto">Book a free 30-minute consultation and we'll recommend the best plan for your goals and budget.</p><button class="btn btn-primary" onclick="go('contact')">Book Free Consultation →</button></div>
+    <div style="margin-top:44px"><h3 class="h3 text-center" style="margin-bottom:26px">Frequently Asked Questions</h3><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
+      <div class="card"><h4 style="margin-bottom:7px;font-weight:600">Is there a minimum contract term?</h4><p style="font-size:.875rem;color:var(--muted)">We offer 3-month, 6-month, and annual plans. Annual plans come with a 15% discount. Project-based engagements are also available.</p></div>
+      <div class="card"><h4 style="margin-bottom:7px;font-weight:600">Do you offer a free trial?</h4><p style="font-size:.875rem;color:var(--muted)">We offer a free 30-minute discovery consultation and a paid 2-week proof-of-concept where we build a working prototype for your business.</p></div>
+      <div class="card"><h4 style="margin-bottom:7px;font-weight:600">Who owns the AI systems you build?</h4><p style="font-size:.875rem;color:var(--muted)">You do. All custom workflows, integrations, and models are fully owned by your business, with complete documentation and handover training.</p></div>
+      <div class="card"><h4 style="margin-bottom:7px;font-weight:600">What industries do you serve?</h4><p style="font-size:.875rem;color:var(--muted)">Our primary focus is ecommerce and SMEs across retail, logistics, fintech, F&amp;B, and B2B services. We assess every engagement individually.</p></div>
+    </div></div>
+  </div></section>
+</div>
+
+<!-- INSIGHTS -->
+<div class="page" id="page-blog">
+  <div style="padding:76px 0 38px;background:var(--grey)"><div class="container"><div class="label">Insights &amp; Resources</div><h1 class="h1" style="margin:10px 0 14px;max-width:680px">AI Insights for <span class="text-blue">Business Leaders</span></h1><p class="lead">Practical guides, case studies, and thought leadership on AI and agentic workflows.</p></div></div>
+  <section class="section"><div class="container"><div class="bgrid">
+    <div class="bcard"><div class="bthumb" style="background:#EFF6FF">🤖</div><div class="bbody"><div class="bdate">June 2026 · Agentic AI</div><div class="btitle">5 Agentic Workflows Every Ecommerce Business Should Automate in 2026</div><p class="bexc">The AI workflows delivering the highest ROI for online retailers right now.</p><button class="btn-ghost" style="margin-top:10px">Read More →</button></div></div>
+    <div class="bcard"><div class="bthumb" style="background:#F0FDF4">📈</div><div class="bbody"><div class="bdate">May 2026 · Strategy</div><div class="btitle">How a 10-Person SME Used AI to Compete with Enterprise Rivals</div><p class="bexc">A Singapore-based logistics SME tripled revenue in 18 months using AI automation.</p><button class="btn-ghost" style="margin-top:10px">Read More →</button></div></div>
+    <div class="bcard"><div class="bthumb" style="background:#FFF7ED">🔗</div><div class="bbody"><div class="bdate">April 2026 · SaaS</div><div class="btitle">The Hidden Cost of Disconnected SaaS Tools (And How AI Fixes It)</div><p class="bexc">Most SMEs use 8–15 software tools that don't talk to each other. Here's how to unify them.</p><button class="btn-ghost" style="margin-top:10px">Read More →</button></div></div>
+    <div class="bcard"><div class="bthumb" style="background:#FDF4FF">🧠</div><div class="bbody"><div class="bdate">March 2026 · AI Strategy</div><div class="btitle">Building Your AI Roadmap: A Framework for Non-Technical Founders</div><p class="bexc">Step-by-step: identify, prioritise, and execute AI initiatives without a technical background.</p><button class="btn-ghost" style="margin-top:10px">Read More →</button></div></div>
+    <div class="bcard"><div class="bthumb" style="background:#FFFBEB">🛒</div><div class="bbody"><div class="bdate">February 2026 · Ecommerce</div><div class="btitle">AI-Powered Personalisation: Boosting Ecommerce Conversion by 40%</div><p class="bexc">Real results from deploying recommendation engines for Singapore online retailers.</p><button class="btn-ghost" style="margin-top:10px">Read More →</button></div></div>
+    <div class="bcard"><div class="bthumb" style="background:#F0F9FF">🔒</div><div class="bbody"><div class="bdate">January 2026 · Compliance</div><div class="btitle">AI &amp; Singapore's PDPA: What Every Business Needs to Know</div><p class="bexc">A practical guide to deploying AI systems in Singapore while staying PDPA-compliant.</p><button class="btn-ghost" style="margin-top:10px">Read More →</button></div></div>
+  </div></div></section>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+  <div style="padding:76px 0 38px;background:var(--grey)"><div class="container"><div class="label">Contact Us</div><h1 class="h1" style="margin:10px 0 14px;max-width:680px">Let's Talk About <span class="text-blue">Your AI Journey</span></h1><p class="lead">Book a free 30-minute discovery call or send us a message — we respond within one business day.</p></div></div>
+  <section class="section"><div class="container"><div class="cgrid">
+    <div class="cinfo">
+      <div class="citem"><div class="cicon">📍</div><div><div class="clbl">Office Address</div><div>101 Upper Cross Street<br>#05-16, People's Park Centre<br>Singapore 058357</div></div></div>
+      <div class="citem"><div class="cicon">🏢</div><div><div class="clbl">Company</div><div>Xvertech Pte. Ltd.<br>UEN: 201713613H</div></div></div>
+      <div class="citem"><div class="cicon">✉️</div><div><div class="clbl">Email</div><div><a href="mailto:hello@xvertech.com" style="color:var(--blue)">hello@xvertech.com</a></div></div></div>
+      <div class="citem"><div class="cicon">📞</div><div><div class="clbl">Phone</div><div>+65 6XXX XXXX</div></div></div>
+      <div class="citem"><div class="cicon">🕒</div><div><div class="clbl">Business Hours</div><div>Mon–Fri, 9:00 AM – 6:00 PM SGT</div></div></div>
+      <div style="padding:18px;background:var(--sky);border-radius:10px;font-size:.875rem"><strong>🇸🇬 Proudly Singapore-based</strong><br><span style="color:var(--muted)">Serving businesses across Southeast Asia from the heart of Singapore.</span></div>
+    </div>
+    <div class="card" style="padding:36px">
+      <h3 class="h3" style="margin-bottom:22px">Send Us a Message</h3>
+      <div class="frow"><div class="fgroup"><label>First Name</label><input type="text" placeholder="Wei Lin"></div><div class="fgroup"><label>Last Name</label><input type="text" placeholder="Tan"></div></div>
+      <div class="fgroup"><label>Email Address</label><input type="email" placeholder="you@company.com"></div>
+      <div class="fgroup"><label>Company</label><input type="text" placeholder="Your Company Pte. Ltd."></div>
+      <div class="fgroup"><label>Service Interest</label><select><option value="">Select a service…</option><option>AI Strategy Consulting</option><option>Agentic Workflow Automation</option><option>SaaS Integration &amp; Development</option><option>Ecommerce AI Solutions</option><option>SME Digital Transformation</option><option>General Enquiry</option></select></div>
+      <div class="fgroup"><label>Message</label><textarea placeholder="Tell us about your business and what you'd like to achieve with AI…"></textarea></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="handleForm()">Send Message →</button>
+      <p style="font-size:.76rem;color:var(--muted);text-align:center;margin-top:10px">We respond within 1 business day. Your data is protected under Singapore's PDPA.</p>
+    </div>
+  </div></div></section>
+</div>
+
+<!-- PRIVACY -->
+<div class="page" id="page-privacy">
+  <div style="padding:76px 0 38px;background:var(--grey)"><div class="container"><div class="label">Legal</div><h1 class="h1" style="margin:10px 0">Privacy Policy</h1><p style="color:var(--muted)">Last updated: 14 June 2026</p></div></div>
+  <section class="section"><div class="container legal"><p>This Privacy Policy describes how Xvertech Pte. Ltd. (UEN 201713613H) ("Xvertech") collects, uses, and discloses personal data in accordance with Singapore's Personal Data Protection Act 2012 (PDPA).</p><h2>1. Data We Collect</h2><ul><li>Name, email, and phone number from contact forms or consultations</li><li>Company name, job title, and business information</li><li>Usage data and analytics from our website and platforms</li><li>Communications data from emails or messages you send us</li></ul><h2>2. How We Use Your Data</h2><ul><li>Respond to enquiries and provide requested services</li><li>Send service-related communications and updates</li><li>Improve our website and service offerings</li><li>Comply with legal obligations</li></ul><h2>3. Disclosure of Data</h2><p>We do not sell, rent, or trade your personal data to third parties. We may disclose data to trusted service providers subject to confidentiality agreements, or as required by Singapore law.</p><h2>4. Data Retention</h2><p>We retain personal data only as long as necessary. Client data is retained for a minimum of 5 years from end of engagement.</p><h2>5. Your Rights</h2><p>Under the PDPA, you have the right to access and correct your personal data. Contact: <a href="mailto:privacy@xvertech.com" style="color:var(--blue)">privacy@xvertech.com</a></p><h2>6. Cookies</h2><p>Our website uses cookies to improve user experience and analyse traffic. You may disable cookies via your browser settings.</p><h2>7. Contact</h2><p><a href="mailto:privacy@xvertech.com" style="color:var(--blue)">privacy@xvertech.com</a><br>Xvertech Pte. Ltd., 101 Upper Cross Street, #05-16, People's Park Centre, Singapore 058357</p></div></section>
+</div>
+
+<!-- TERMS -->
+<div class="page" id="page-terms">
+  <div style="padding:76px 0 38px;background:var(--grey)"><div class="container"><div class="label">Legal</div><h1 class="h1" style="margin:10px 0">Terms of Service</h1><p style="color:var(--muted)">Last updated: 14 June 2026</p></div></div>
+  <section class="section"><div class="container legal"><p>These Terms of Service govern your use of services provided by Xvertech Pte. Ltd. (UEN 201713613H). By engaging our services, you agree to these terms.</p><h2>1. Services</h2><p>Xvertech provides AI strategy consulting, workflow automation, SaaS development, and related technology services as described in individual service agreements or statements of work.</p><h2>2. Engagement &amp; Payment</h2><p>All engagements are governed by a signed Statement of Work or Service Agreement. Invoices are due within 14 days. Late payments accrue interest at 1.5% per month.</p><h2>3. Intellectual Property</h2><p>Upon full payment, all custom deliverables are assigned to the client. Xvertech retains rights to its pre-existing tools, frameworks, and methodologies.</p><h2>4. Confidentiality</h2><p>Both parties agree to maintain confidentiality of proprietary information. This obligation survives termination for 3 years.</p><h2>5. Limitation of Liability</h2><p>Xvertech's total liability shall not exceed fees paid in the 3 months preceding the claim. We are not liable for indirect or consequential damages.</p><h2>6. Termination</h2><p>Either party may terminate a retainer with 30 days' written notice. Project engagements may not be terminated after work commences without paying for completed work.</p><h2>7. Governing Law</h2><p>These terms are governed by the laws of Singapore. Disputes are subject to the exclusive jurisdiction of the Singapore courts.</p><h2>8. Contact</h2><p><a href="mailto:legal@xvertech.com" style="color:var(--blue)">legal@xvertech.com</a><br>Xvertech Pte. Ltd., 101 Upper Cross Street, #05-16, People's Park Centre, Singapore 058357</p></div></section>
+</div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="fgrid">
+      <div><div class="flogo">XVER<span>TECH</span></div><p class="fdesc">AI consultancy and SaaS solutions helping SMEs and ecommerce businesses across Southeast Asia leverage AI and agentic workflows to maximise revenue and reach.</p><div style="font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.9">101 Upper Cross Street<br>#05-16, People's Park Centre<br>Singapore 058357<br>UEN: 201713613H</div></div>
+      <div><div class="fct">Services</div><div class="flinks"><a onclick="go('services')">AI Strategy Consulting</a><a onclick="go('services')">Agentic Workflow Automation</a><a onclick="go('services')">SaaS Integration</a><a onclick="go('services')">Ecommerce AI</a><a onclick="go('services')">SME Digital Transformation</a></div></div>
+      <div><div class="fct">Company</div><div class="flinks"><a onclick="go('about')">About Us</a><a onclick="go('solutions')">Solutions</a><a onclick="go('pricing')">Pricing</a><a onclick="go('blog')">Insights</a><a onclick="go('contact')">Contact</a></div></div>
+      <div><div class="fct">Get In Touch</div><div class="flinks"><a href="mailto:hello@xvertech.com">hello@xvertech.com</a><a>+65 6XXX XXXX</a><a>LinkedIn</a></div><div style="margin-top:18px"><button class="btn btn-primary" style="padding:9px 16px;font-size:.78rem" onclick="go('contact')">Book a Consultation</button></div></div>
+    </div>
+    <div class="fbot">
+      <div><div style="font-size:.78rem">© 2026 Xvertech Pte. Ltd. (UEN 201713613H). All rights reserved.</div><div class="flegal-links"><a onclick="go('privacy')">Privacy Policy</a><a onclick="go('terms')">Terms of Service</a></div></div>
+      <div style="font-size:.75rem;color:rgba(255,255,255,.3)">Registered in Singapore</div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  function go(p){
+    document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+    const el=document.getElementById('page-'+p);
+    if(el)el.classList.add('active');
+    document.querySelectorAll('[data-page]').forEach(a=>a.classList.toggle('active',a.dataset.page===p));
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function toggleMob(){document.getElementById('mob').classList.toggle('open')}
+  function closeMob(){document.getElementById('mob').classList.remove('open')}
+  function handleForm(){
+    const t=document.getElementById('toast');
+    t.textContent="✅ Message sent! We'll be in touch within 1 business day.";
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),4000);
+  }
+</script>
+</body>
+</html>
