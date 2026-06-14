@@ -709,12 +709,28 @@
         <p style="color:#374151;line-height:1.8;margin-bottom:16px">Second, <strong>data minimisation</strong>: AI models often benefit from more data, but collecting more data than necessary creates both compliance risk and security risk. Before connecting a new data source to an AI system, ask whether the data is genuinely necessary for the intended purpose.</p>
         <p style="color:#374151;line-height:1.8;margin-bottom:16px">Third, <strong>third-party processors</strong>: if your AI system uses a cloud AI provider (OpenAI, Google, AWS, etc.), you are responsible for ensuring that provider handles your customers' data in accordance with PDPA requirements. Review their data processing agreements carefully and confirm that data is not used to train general models without consent.</p>
 
+        <h2 style="font-size:1.35rem;font-weight:700;margin:32px 0 12px">Consent and Notification Requirements for AI</h2>
+        <p style="color:#374151;line-height:1.8;margin-bottom:16px">One of the most common compliance gaps we encounter in AI deployments is inadequate consent and notification practices. Many businesses assume that customers consented when they accepted generic terms, but this is often insufficient under the PDPA — particularly where AI processing creates use cases not contemplated at original consent.</p>
+        <p style="color:#374151;line-height:1.8;margin-bottom:16px">Best practice for AI deployments is to review your existing privacy notices and consent mechanisms to ensure they explicitly cover AI-based processing, including recommendation engines, predictive analytics, or automated decision-making. Where existing consent is insufficient, you will need to seek fresh consent before using data for new AI purposes.</p>
+        <p style="color:#374151;line-height:1.8;margin-bottom:16px">The PDPC has also issued advisory guidelines on AI and personal data that emphasise transparency — organisations should be able to explain in plain language what their AI systems do with personal data and how individuals can exercise their access and correction rights.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:700;margin:32px 0 12px">Data Minimisation in AI Systems</h2>
+        <p style="color:#374151;line-height:1.8;margin-bottom:16px">A core principle of the PDPA is collecting only the data necessary for the stated purpose. In AI projects, this principle is frequently under pressure: models tend to perform better with more data, and data scientists often want access to the full dataset. PDPA compliance requires a deliberate decision to limit data collection to what is genuinely necessary.</p>
+        <p style="color:#374151;line-height:1.8;margin-bottom:16px">When designing AI systems, identify the minimum data set required to achieve the business objective. Anonymise or pseudonymise personal data wherever the AI task permits. Establish data retention schedules so that personal data is deleted or anonymised once the purpose has been fulfilled. These steps reduce both compliance risk and the impact of any potential data breach.</p>
+
+        <h2 style="font-size:1.35rem;font-weight:700;margin:32px 0 12px">Appointing a Data Protection Officer</h2>
+        <p style="color:#374151;line-height:1.8;margin-bottom:16px">Since the 2021 PDPA amendments, all organisations in Singapore are required to designate a Data Protection Officer (DPO). The DPO does not need to be a full-time role — it can be assigned to an existing employee or outsourced to a qualified third party — but the role must exist and the DPO must be accessible to staff and customers.</p>
+        <p style="color:#374151;line-height:1.8;margin-bottom:16px">When deploying AI systems, your DPO should be involved in the design phase, not just as an afterthought before launch. A DPO who reviews AI system design early can identify data protection risks while they are still inexpensive to address, rather than requiring costly rework after the system is built.</p>
+
         <h2 style="font-size:1.35rem;font-weight:700;margin:32px 0 12px">Conducting a Data Protection Impact Assessment</h2>
-        <p style="color:#374151;line-height:1.8;margin-bottom:16px">Before deploying any AI system that processes significant personal data, conduct a Data Protection Impact Assessment (DPIA). A DPIA documents: what data is processed and why, who has access to it, what the risks are to individuals, and what mitigations are in place. The PDPC recommends DPIAs for high-risk processing activities and they are an excellent discipline for any AI deployment.</p>
+        <p style="color:#374151;line-height:1.8;margin-bottom:16px">A Data Protection Impact Assessment (DPIA) is a structured process for identifying and mitigating data protection risks before an AI system goes live. While not yet mandatory under the PDPA for all projects, the PDPC strongly recommends DPIAs for any processing activity that is likely to result in high risk to individuals.</p>
+        <p style="color:#374151;line-height:1.8;margin-bottom:16px">A DPIA for an AI deployment typically covers: the categories of personal data being processed and the legal basis for processing; the purpose of the AI system and whether a less privacy-invasive alternative exists; the risks to individuals if data were accessed without authorisation or used for unintended purposes; and the controls in place to mitigate those risks.</p>
+        <p style="color:#374151;line-height:1.8;margin-bottom:16px">Conducting a DPIA before deploying an AI system has two benefits: it identifies compliance gaps before they become enforcement issues, and it creates a documented record of your organisation's commitment to responsible data use — which regulators view favourably.</p>
+        <p style="color:#374151;line-height:1.8;margin-bottom:16px">PDPA compliance does not need to be a barrier to AI adoption. With appropriate design — clear consent mechanisms, data minimisation, proper governance, and a culture of data protection — Singapore businesses can deploy AI systems confidently and competitively.</p>
 
         <div style="background:var(--sky);border-radius:12px;padding:28px 32px;margin:40px 0">
-          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:10px">Need help with PDPA-compliant AI deployment?</h3>
-          <p style="color:#374151;margin-bottom:18px">We include PDPA compliance review as a standard part of every AI deployment we undertake for Singapore clients. Book a consultation to discuss your specific requirements.</p>
+          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:10px">Need help deploying AI compliantly in Singapore?</h3>
+          <p style="color:#374151;margin-bottom:18px">Our team includes PDPA-experienced advisers who review data protection requirements as a standard part of every AI deployment. Book a consultation to discuss your specific compliance needs.</p>
           <button class="btn btn-primary" onclick="go('contact')">Book a Free Consultation →</button>
         </div>
       </div>
@@ -738,8 +754,9 @@
         <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px">
           <li><a onclick="go('services')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">AI Strategy</a></li>
           <li><a onclick="go('services')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">Agentic Workflows</a></li>
-          <li><a onclick="go('services')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">SaaS Integration</a></li>
-          <li><a onclick="go('solutions')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">Ecommerce AI</a></li>
+          <li><a onclick="go('services')" style="color:#94A3B8;          <li><a onclick="go('services')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">Custom SaaS</a></li>
+          <li><a onclick="go('services')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">Data Analytics</a></li>
+          <li><a onclick="go('services')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">PDPA Compliance</a></li>
         </ul>
       </div>
       <div>
@@ -747,32 +764,32 @@
         <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px">
           <li><a onclick="go('about')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">About Us</a></li>
           <li><a onclick="go('blog')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">Insights</a></li>
-          <li><a onclick="go('pricing')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">Pricing</a></li>
           <li><a onclick="go('contact')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">Contact</a></li>
+          <li><a onclick="go('privacy')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">Privacy Policy</a></li>
+          <li><a onclick="go('terms')" style="color:#94A3B8;font-size:.875rem;cursor:pointer;text-decoration:none">Terms of Service</a></li>
         </ul>
       </div>
       <div>
         <div style="font-weight:600;margin-bottom:14px">Get In Touch</div>
         <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px">
-          <li style="color:#94A3B8;font-size:.875rem">📍 101 Upper Cross Street<br>#05-16 People's Park Centre<br>Singapore 058357</li>
-          <li><a href="mailto:hello@xvertech.com" style="color:#94A3B8;font-size:.875rem;text-decoration:none">✉️ hello@xvertech.com</a></li>
+          <li><a href="mailto:hello@xvertech.com" style="color:#94A3B8;font-size:.875rem;text-decoration:none">hello@xvertech.com</a></li>
+          <li style="color:#94A3B8;font-size:.875rem">101 Upper Cross Street<br>#05-16 People's Park Centre<br>Singapore 058357</li>
         </ul>
       </div>
     </div>
-    <div style="border-top:1px solid #1E293B;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-      <p style="color:#64748B;font-size:.8rem">© 2026 Xvertech Pte. Ltd. All rights reserved.</p>
+    <div style="border-top:1px solid #1E293B;padding-top:24px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center">
+      <div style="font-size:.78rem;color:#64748B">© 2026 Xvertech Pte. Ltd. (UEN 201713613H). All rights reserved.</div>
       <div style="display:flex;gap:20px">
-        <a onclick="go('privacy')" style="color:#64748B;font-size:.8rem;cursor:pointer;text-decoration:none">Privacy Policy</a>
-        <a onclick="go('terms')" style="color:#64748B;font-size:.8rem;cursor:pointer;text-decoration:none">Terms of Service</a>
+        <a onclick="go('privacy')" style="color:#64748B;font-size:.78rem;cursor:pointer;text-decoration:none">Privacy Policy</a>
+        <a onclick="go('terms')" style="color:#64748B;font-size:.78rem;cursor:pointer;text-decoration:none">Terms of Service</a>
       </div>
     </div>
   </div>
 </footer>
 
-<div id="toast" style="position:fixed;bottom:28px;right:28px;background:#0D1B2A;color:#fff;padding:14px 22px;border-radius:10px;font-size:.9rem;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999"></div>
+<div class="toast" id="toast"></div>
 
 <script>
-  /* ── URL routing ── */
   const PAGE_URLS={home:'/',about:'/about',services:'/services',solutions:'/solutions',pricing:'/pricing',blog:'/insights',contact:'/contact',privacy:'/privacy',terms:'/terms','blog-agentic':'/insights/agentic-workflows-ecommerce-2026','blog-sme':'/insights/sme-ai-compete-enterprise','blog-saas':'/insights/hidden-cost-disconnected-saas','blog-roadmap':'/insights/ai-roadmap-non-technical-founders','blog-personalisation':'/insights/ai-personalisation-ecommerce','blog-pdpa':'/insights/ai-pdpa-singapore'};
   const URL_PAGES={};Object.entries(PAGE_URLS).forEach(([k,v])=>URL_PAGES[v]=k);
   function go(p,push=true){
@@ -787,7 +804,6 @@
   function routeFromURL(){const p=URL_PAGES[location.pathname]||'home';go(p,false);}
   window.addEventListener('popstate',e=>e.state?go(e.state.p,false):routeFromURL());
   document.addEventListener('DOMContentLoaded',routeFromURL);
-  /* ── UI helpers ── */
   function toggleMob(){document.getElementById('mob').classList.toggle('open')}
   function closeMob(){document.getElementById('mob').classList.remove('open')}
   function handleForm(){const t=document.getElementById('toast');t.textContent="✅ Message sent! We'll be in touch within 1 business day.";t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);}
@@ -796,8 +812,7 @@
 </script>
 </body>
 </html>
-rgin:32px 0 12px">Consent and Notification Requirements for AI</h2>
-        <p style="color:#374151;line-height:1.8;margin-bottom:16px">One of the most common compliance gaps we encounter in AI deployments is inadequate consent and notification coverage. A business may have collected consent for a specific purpose — for example, processing an ecommerce transaction — but then uses that data to train a recommendation model or feed a marketing AI system. This secondary use typically requires separate consent unless it falls within the reasonable expectations of the original collection.</p>
+;margin-bottom:16px">One of the most common compliance gaps we encounter in AI deployments is inadequate consent and notification coverage. A business may have collected consent for a specific purpose — for example, processing an ecommerce transaction — but then uses that data to train a recommendation model or feed a marketing AI system. This secondary use typically requires separate consent unless it falls within the reasonable expectations of the original collection.</p>
         <p style="color:#374151;line-height:1.8;margin-bottom:16px">Best practice for AI deployments is to review your existing privacy notices and consent mechanisms to ensure they explicitly cover the AI-related uses of personal data. If your current notices do not mention the use of customer data for personalisation, predictive analytics, or AI-driven marketing, you likely need to update them and, in some cases, re-obtain consent from existing customers.</p>
         <p style="color:#374151;line-height:1.8;margin-bottom:16px">The PDPC has also issued advisory guidelines on AI and personal data that emphasise transparency — organisations deploying AI that makes decisions affecting individuals should, where practicable, explain the basis on which decisions are made.</p>
 
